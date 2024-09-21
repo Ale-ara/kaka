@@ -122,12 +122,12 @@
             background-color: #2c2c2c;
         }
 
-        .hero {
+        .cor-ciano {
             text-align: center;
             padding: 50px 10px;
         }
 
-        .hero h1 {
+        .cor-ciano h1 {
             font-size: 80px;
             line-height: 1.2;
             margin-bottom: 20px;
@@ -135,14 +135,14 @@
             font-weight: 900;
         }
 
-        .hero h1 span {
+        .cor-ciano h1 span {
             color: #8ab4f8;
         }
 
-        .hero p {
-            opacity: 0; /* Inicialmente invisível */
-            animation: fadeInUp 1s forwards; /* Efeito ao aparecer */
-            animation-delay: 0.5s; /* Espera um pouco antes de aparecer */
+        .cor-ciano p {
+            opacity: 0; 
+            animation: fadeInUp 1s forwards; 
+            animation-delay: 0.5s;
         }
 
         @keyframes fadeInUp {
@@ -163,26 +163,25 @@
             border-radius: 20px;
         }
 
-        /* Media Queries */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 50px; /* Tamanho menor em telas pequenas */
+            .cor-ciano h1 {
+                font-size: 50px;
             }
 
             .access-section h2 {
-                font-size: 28px; /* Tamanho menor em telas pequenas */
+                font-size: 28px; 
             }
 
             .menu {
-                flex-direction: column; /* Altera a direção da navbar */
-                align-items: center; /* Centraliza os itens */
+                flex-direction: column;
+                align-items: center; 
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Nav Bar -->
+
 <nav>
     <div class="logo">
         <img src="https://i.imgur.com/RYKcWYW.png" alt="Logo">
@@ -193,21 +192,21 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
-<div class="hero">
+
+<div class="cor-ciano">
     <h1>Acelere seu negócio com <span>Kaká</span></h1><br>
     <p>Tem interesse em fazer seu orçamento e serviços com Kaká?</p>
 </div>
 
-<!-- Access Section -->
+
 <div class="access-section">
     <h2>Serviços</h2>
     <div class="cards">
-        <!-- Card 1 -->
+
         <div class="card" onclick="window.location.href='form.html';">
             <img src="https://i.imgur.com/RYKcWYW.png" alt="Icone">
-            <h3>Serviços</h3>
-            <p>Acesso rápido para acessar página do formulário</p>
+            <h3>Faça seu orçamento</h3>
+            <p>Acesse o formulário de orçamento, clicando aqui.</p>
         </div>
     </div>
 </div>
