@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Requerimento</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700;900&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            font-family: 'Hanken Grotesk', sans-serif;
+            color: #d4d4d4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #1f1f1f;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.7);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2b2b2b;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #8ab4f8;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #76a3e0;
+        }
+
+        .confirmation {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .confirmation img {
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Formulário de Requerimento</h2>
+    <form id="requerimentoForm">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="empresa">Empresa (Opcional):</label>
+            <input type="text" id="empresa" name="empresa">
+        </div>
+        <div class="form-group">
+            <label for="telefone">Tel. Contato:</label>
+            <input type="text" id="telefone" name="telefone" required>
+        </div>
+        <div class="form-group">
+            <label for="categoria">Manutenção, Suporte, Orçamentos:</label>
+            <input type="text" id="categoria" name="categoria" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="numeracao">Número do Ticket:</label>
+            <input type="text" id="numeracao" name="numeracao" value="AUTO-GERADO" readonly>
+        </div>
+        <div class="form-group">
+            <label for="dataHora">Data e Hora de Abertura:</label>
+            <input type="text" id="dataHora" name="dataHora" value="" readonly>
+        </div>
+        <button type="submit" class="submit-btn">Enviar</button>
+    </form>
+
+    <div class="confirmation" id="confirmationMessage">
+        <img src="https://i.imgur.com/KY6WHy9.png" alt="Confirmação">
+        <p>Ticket enviado com sucesso!</p>
+    </div>
+</div>
+
+<script>
+document.getElementById('requerimentoForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Preencher data e hora
+    const dataHora = new Date().toLocaleString();
+    document.getElementById('dataHora').value = dataHora;
+
+    // Simulação de envio e exibição da confirmação
+    setTimeout(function() {
+        document.getElementById('requerimentoForm').style.display = 'none';
+        document.getElementById('confirmationMessage').style.display = 'block';
+    }, 1000); // Simula 1 segundo de processamento
+});
+</script>
+
+</body>
+</html>
