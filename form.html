@@ -228,6 +228,33 @@
     box-shadow: 0 0 5px rgba(138, 180, 248, 0.5); /* Sombra ao focar */
 }
 
+.copy-btn, .complete-btn {
+    background-color: #8ab4f8; 
+    color: #121212; 
+    border: none;
+    border-radius: 5px; 
+    padding: 10px; 
+    font-size: 16px; 
+    font-weight: 700;
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.3s; 
+    margin: 5px 0; 
+    width: 100%;
+}
+
+.copy-btn:hover, .complete-btn:hover {
+    background-color: #76a3e0; 
+    transform: scale(1.05);
+}
+
+.copy-btn:active, .complete-btn:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
+
+.copy-btn:focus, .complete-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(138, 180, 248, 0.5);
+}
 
     </style>
 </head>
