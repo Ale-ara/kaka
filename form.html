@@ -279,13 +279,15 @@
 
     <div id="confirmationMessage" class="confirmation" style="display: none;">
         <p>Enviado com sucesso!</p>
+        <p>Número do ticket: <span id="ticketNumber"></span></p>
+        <button id="copyTicketBtn" onclick="copyTicket()">Copiar Ticket</button>
+        <button id="finishBtn" onclick="redirectToHome()">Concluir</button>
     </div>
 
     <div id="loadingMessage" class="loading-message" style="display: none;">
         <p>Enviando...</p>
     </div>
 </div>
-
 
 <script>
     document.getElementById('requerimentoForm').addEventListener('submit', function(event) {
@@ -294,7 +296,7 @@
         // Carregamento
         document.getElementById('loadingMessage').style.display = 'block';
 
-        // Adição da data que fiz
+        // Adição da data e geração do número do ticket
         const now = new Date();
         const dataHora = now.toLocaleString();
         const ticketNum = `TICKET-${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, '0')}${now.getDate().toString().padStart(2, '0')}${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now.getSeconds().toString().padStart(2, '0')}`;
@@ -304,7 +306,7 @@
 
         const formData = new FormData(document.getElementById('requerimentoForm'));
 
-        fetch('https://script.google.com/macros/s/AKfycbwLVyXq8SMfk1a395Ill1iEeU6oXUp5RIyAtSQaJUZOX9FmEUjGXx7AWRYh5v_5R6fu/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbwh1wah9oclmqHOy4Kh1FGzUVuhgiuJOWB0QM8MRhJCXOssxbjCCvCsTxTx9CHmPj6e/exec', {
             method: 'POST',
             body: formData
         }).then(response => response.json())
@@ -313,12 +315,10 @@
                 // Ocultar o formulário e o loading
                 document.getElementById('requerimentoForm').style.display = 'none';
                 document.getElementById('loadingMessage').style.display = 'none';
-                // O textinho de confirmação :)
+                
+                // Mostrar a mensagem de confirmação e o ticket gerado
+                document.getElementById('ticketNumber').innerText = ticketNum;
                 document.getElementById('confirmationMessage').style.display = 'block';
-
-                setTimeout(function() {
-                    window.location.href = 'index.html'; // Página principal Kaká
-                }, 3000);
             } else {
                 alert('Erro ao enviar o formulário.');
             }
@@ -326,6 +326,21 @@
             alert('Erro de conexão: ' + error.message);
         });
     });
+
+    // Função para copiar o número do ticket
+    function copyTicket() {
+        const ticketNumber = document.getElementById('ticketNumber').innerText;
+        navigator.clipboard.writeText(ticketNumber).then(() => {
+            alert('Ticket copiado: ' + ticketNumber);
+        }).catch(err => {
+            alert('Erro ao copiar o ticket: ' + err);
+        });
+    }
+
+    // Função para redirecionar para a página inicial
+    function redirectToHome() {
+        window.location.href = 'index.html';
+    }
 </script>
 
 </body>
