@@ -204,8 +204,12 @@
 
         <div class="form-group">
             <label for="empresa">Empresa:</label>
-            <input type="text" id="empresa" name="empresa" required>
-        </div>
+            <select id="empresa" name="empresa" required>
+                <option value="VL FERRAGENS">VL FERRAGENS</option>
+                <option value="VL LAGOS">VL LAGOS</option>
+                <option value="VL COSTA VERDE">VL COSTA VERDE</option>
+            </select>
+        </div>  
 
         <div class="form-group">
             <label for="telefone">Telefone:</label>
