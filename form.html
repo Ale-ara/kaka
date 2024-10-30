@@ -204,11 +204,13 @@
         <button type="submit" class="submit-btn">Enviar</button>
     </form>
 
-    <div id="confirmationMessage" class="confirmation">
+    <div id="confirmationMessage" class="confirmation" style="display: none;">
         <p>Enviado com sucesso!</p>
+        <p>Seu número de ticket é: <span id="ticketNumber"></span></p>
+        <button id="okButton">OK</button>
     </div>
 
-    <div id="loadingMessage" class="loading-message">
+    <div id="loadingMessage" class="loading-message" style="display: none;">
         <p>Enviando...</p>
     </div>
 </div>
@@ -217,10 +219,10 @@
     document.getElementById('requerimentoForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Carregamento
+        // Exibir mensagem de carregamento
         document.getElementById('loadingMessage').style.display = 'block';
 
-        // Adição da data que fiz
+        // Gerar data e número do ticket
         const now = new Date();
         const dataHora = now.toLocaleString();
         const ticketNum = `TICKET-${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, '0')}${now.getDate().toString().padStart(2, '0')}${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now.getSeconds().toString().padStart(2, '0')}`;
@@ -236,15 +238,18 @@
         }).then(response => response.json())
           .then(data => {
             if (data.result === 'success') {
-                // Ocultar o formulário e o loading
+                // Esconder formulário e mensagem de carregamento
                 document.getElementById('requerimentoForm').style.display = 'none';
                 document.getElementById('loadingMessage').style.display = 'none';
-                // O textinho de confirmação :)
-                document.getElementById('confirmationMessage').style.display = 'block';
 
-                setTimeout(function() {
-                    window.location.href = 'index.html'; // Página principal Kaká
-                }, 3000);
+                // Mostrar número do ticket e botão de confirmação
+                document.getElementById('ticketNumber').textContent = ticketNum;
+                document.getElementById('confirmationMessage').style.display = 'block';
+                
+                // Ao clicar em "OK", redirecionar para a página principal
+                document.getElementById('okButton').addEventListener('click', function() {
+                    window.location.href = 'index.html';
+                });
             } else {
                 alert('Erro ao enviar o formulário.');
             }
