@@ -206,7 +206,10 @@
 
     <div id="confirmationMessage" class="confirmation" style="display: none;">
         <p>Enviado com sucesso!</p>
-        <p>Seu número de ticket é: <span id="ticketNumber"></span></p>
+        <p>Seu número de ticket é: 
+            <span id="ticketNumber"></span>
+            <button id="copyButton">Copiar</button>
+        </p>
         <button id="okButton">OK</button>
     </div>
 
@@ -242,10 +245,19 @@
                 document.getElementById('requerimentoForm').style.display = 'none';
                 document.getElementById('loadingMessage').style.display = 'none';
 
-                // Mostrar número do ticket e botão de confirmação
+                // Mostrar número do ticket e botões de confirmação e cópia
                 document.getElementById('ticketNumber').textContent = ticketNum;
                 document.getElementById('confirmationMessage').style.display = 'block';
-                
+
+                // Adicionar funcionalidade ao botão "Copiar"
+                document.getElementById('copyButton').addEventListener('click', function() {
+                    navigator.clipboard.writeText(ticketNum).then(() => {
+                        alert('Ticket copiado para a área de transferência!');
+                    }).catch(err => {
+                        alert('Erro ao copiar: ' + err);
+                    });
+                });
+
                 // Ao clicar em "OK", redirecionar para a página principal
                 document.getElementById('okButton').addEventListener('click', function() {
                     window.location.href = 'index.html';
