@@ -241,6 +241,28 @@
     font-size: 12px;
     pointer-events: none;
 }
+#okButton {
+    background-color: #8ab4f8; /* Cor de fundo */
+    color: #121212; /* Cor do texto */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Cantos arredondados */
+    padding: 10px 20px; /* Espaço interno */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: 700; /* Peso da fonte */
+    cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+    transition: background-color 0.3s, transform 0.3s; /* Transição suave para as mudanças de cor e escala */
+    margin-top: 10px; /* Margem superior para espaçamento */
+}
+
+#okButton:hover {
+    background-color: #76a3e0; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento de tamanho */
+}
+
+#okButton:focus {
+    outline: none; /* Remove contorno padrão */
+    box-shadow: 0 0 0 2px #8ab4f8; /* Adiciona um destaque ao foco */
+}
 
 
 
