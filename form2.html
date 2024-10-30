@@ -269,7 +269,8 @@
                 <option value="VL LAGOS">VL LAGOS</option>
                 <option value="VL COSTA VERDE">VL COSTA VERDE</option>
             </select>
-        </div>
+        </div>        
+
 
         <div class="form-group">
             <label for="telefone">Telefone:</label>
@@ -281,13 +282,7 @@
             <textarea id="descricao" name="descricao" required></textarea>
         </div>
 
-        <!-- Campo para exibir e copiar o número do ticket -->
-        <div class="form-group ticket-group">
-            <label for="numeracao">Número do Ticket:</label>
-            <input type="text" id="numeracao" name="numeracao" readonly>
-            <button type="button" class="copy-btn" onclick="copiarTicket()">Copiar Ticket</button>
-        </div>
-
+        <input type="hidden" id="numeracao" name="numeracao">
         <input type="hidden" id="dataHora" name="dataHora">
 
         <button type="submit" class="submit-btn">Enviar</button>
@@ -306,13 +301,13 @@
     document.getElementById('requerimentoForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Exibe a mensagem de carregamento
+        // Carregamento
         document.getElementById('loadingMessage').style.display = 'block';
 
-        // Gera o número do ticket e a data/hora
+        // Adição da data que fiz
         const now = new Date();
         const dataHora = now.toLocaleString();
-        const ticketNum = `TICKET-${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, '0')}${now.getDate().toString().padStart(2, '0')}${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now.getSeconds().toString().padStart(2, '0')}`;
+        const ticketNum = TICKET-${now.getFullYear()}${(now.getMonth() + 1).toString().padStart(2, '0')}${now.getDate().toString().padStart(2, '0')}${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now.getSeconds().toString().padStart(2, '0')};
 
         document.getElementById('dataHora').value = dataHora;
         document.getElementById('numeracao').value = ticketNum;
@@ -325,12 +320,14 @@
         }).then(response => response.json())
           .then(data => {
             if (data.result === 'success') {
+                // Ocultar o formulário e o loading
                 document.getElementById('requerimentoForm').style.display = 'none';
                 document.getElementById('loadingMessage').style.display = 'none';
+                // O textinho de confirmação :)
                 document.getElementById('confirmationMessage').style.display = 'block';
 
                 setTimeout(function() {
-                    window.location.href = 'index.html';
+                    window.location.href = 'index.html'; // Página principal Kaká
                 }, 3000);
             } else {
                 alert('Erro ao enviar o formulário.');
@@ -339,16 +336,7 @@
             alert('Erro de conexão: ' + error.message);
         });
     });
-
-    // Função para copiar o número do ticket
-    function copiarTicket() {
-        const ticket = document.getElementById('numeracao');
-        ticket.select();
-        document.execCommand('copy');
-        alert('Número do Ticket copiado para a área de transferência');
-    }
 </script>
-
-
+    
 </body>
 </html>
